@@ -15,4 +15,4 @@ jobs:
          with:
            token: ${{ env.GEN_TOKEN }}
            commands: |
-             /deploy name='naseer'
+             deploy
