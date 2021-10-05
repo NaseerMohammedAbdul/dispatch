@@ -8,8 +8,19 @@ jobs:
   slashCommandDispatch:
     runs-on: ubuntu-latest
     steps:
-      - name: Slash Command Dispatch
-        uses: peter-evans/slash-command-dispatch@v2
-        with:
-          commands: |
-            deploy
+       - name: Generate token
+         id: generate_token
+         uses: tibdex/github-app-token@v1
+         with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_KEY }}
+          repository: AAInternal/test-github-actions
+          
+       - name: Slash Command Dispatch
+         uses: peter-evans/slash-command-dispatch@v2
+         env:
+            GEN_TOKEN: ${{ steps.generate_token.outputs.token }}
+         with:
+           token: ${{ env.GEN_TOKEN }}
+           commands: |
+             deploy
