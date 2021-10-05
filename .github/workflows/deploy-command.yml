@@ -27,8 +27,10 @@ jobs:
 
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v1
+        env:
+            GEN_TOKEN: ${{ secrets.APP_KEY }}
         with:
-          token: ${{ secrets.AAINTERNAL_READONLY_PAT }}
+          token:  ${{ env.GEN_TOKEN }}
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           reaction-type: hooray
