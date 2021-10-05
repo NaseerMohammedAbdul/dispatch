@@ -10,9 +10,7 @@ jobs:
     steps:          
        - name: Slash Command Dispatch
          uses: peter-evans/slash-command-dispatch@v2
-         env:
-            GEN_TOKEN: 'test'
          with:
-           token: ${{ env.GEN_TOKEN }}
            commands: |
              deploy
+           repository: NaseerMohammedAbdul/dispatch
