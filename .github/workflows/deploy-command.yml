@@ -26,7 +26,6 @@ jobs:
           echo "${{toJson(github.workflow)}}"
 
       - name: Add reaction
-        if: ${{ github.event.action == 'repository_dispatch' }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.AAINTERNAL_READONLY_PAT }}
