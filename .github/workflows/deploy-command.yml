@@ -2,6 +2,13 @@ name : deploy command workflow
 on:
   repository_dispatch:
     types: [deploy-command]
+    
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Env Name' 
+        default: 'dev'       
+        required: true
   
 env:
   ENVIRONMENT    : dev
