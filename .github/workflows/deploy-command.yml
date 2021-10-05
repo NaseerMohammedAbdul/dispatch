@@ -1,7 +1,7 @@
 name : deploy command workflow
 on:
   repository_dispatch:
-    types: [deploy1-command]
+    types: [deploy-command]
   workflow_dispatch:
     inputs:
       name:
