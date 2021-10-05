@@ -19,7 +19,7 @@ jobs:
             GEN_TOKEN: ${{ secrets.APP_KEY }}
         with:
           token: ${{ env.GEN_TOKEN }}
-          issue-number: 1
+          issue-name: abc
           body: |
             /deploy name=AMPS
             
