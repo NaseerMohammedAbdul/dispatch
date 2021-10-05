@@ -17,8 +17,8 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         env:
             GEN_TOKEN: ${{ secrets.APP_KEY }}
-         with:
-           token: ${{ env.GEN_TOKEN }}
+        with:
+          token: ${{ env.GEN_TOKEN }}
           issue-number: 1
           body: |
             /deploy name=AMPS
