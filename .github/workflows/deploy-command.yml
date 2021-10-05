@@ -1,0 +1,43 @@
+name : deploy command workflow
+on:
+  repository_dispatch:
+    types: [deploy1-command]
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Env Name'
+        default: 'dev'
+        required: true
+env:
+  ENVIRONMENT    : ${{ github.event.client_payload.slash_command.args.named.enviornment || github.event.inputs.name  || 'notprod' }}
+  REGION         : eastus
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print 1
+        run: |
+          echo "${{toJson(github.event)}}"
+
+      - name: print 2
+        run: |
+          echo "${{toJson(github.workflow)}}"
+
+      - name: Add reaction
+        if: ${{ github.event.action == 'repository_dispatch' }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.AAINTERNAL_READONLY_PAT }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          reaction-type: hooray
+
+      # Get the branch name
+      - name: Get the target enviornment name
+        id: vars
+        run: |
+          enviornment=${{ github.event.client_payload.slash_command.args.named.enviornment }}
+          region=${{ github.event.client_payload.slash_command.args.named.region }}
+          echo "${{ github.event.client_payload.slash_command.args.named.enviornment }}"
+          echo "${{ github.event.client_payload.slash_command.args.named.region }}"
+          echo "${{ env.ENVIRONMENT }}"
