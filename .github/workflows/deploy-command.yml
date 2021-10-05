@@ -1,7 +1,7 @@
 name : deploy command workflow
 on:
   repository_dispatch:
-    types: [deploy]
+    types: [deploy-command]
   
 env:
   ENVIRONMENT    : dev
