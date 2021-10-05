@@ -1,0 +1,26 @@
+name: Generic CI Workflow
+
+on:
+  push:
+    branches:
+      - '*'       # Matches any branch
+      - '*/*'     # matches every branch containing a single '/'
+      - '**'      # matches every branch
+  pull_request:
+    types: [ assigned, opened, synchronize, reopened ]
+    
+jobs:
+  slashCommandDispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        env:
+            GEN_TOKEN: ${{ secrets.APP_KEY }}
+         with:
+           token: ${{ env.GEN_TOKEN }}
+          issue-number: 1
+          body: |
+            /deploy name=AMPS
+            
+          reactions: '+1'
