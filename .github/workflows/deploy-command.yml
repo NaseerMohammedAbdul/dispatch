@@ -11,7 +11,7 @@ on:
         required: true
   
 env:
-  ENVIRONMENT    : dev
+  ENVIRONMENT    : ${{ github.event.client_payload.slash_command.args.named.enviornment || github.event.inputs.name  || 'notprod' }}
   REGION         : eastus
 jobs:
   example:
