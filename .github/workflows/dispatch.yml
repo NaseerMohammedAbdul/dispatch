@@ -1,11 +1,14 @@
 name: Dispatch Workflow
 
 on:
-  push:
-    branches:
-      - '*'       # Matches any branch
-      - '*/*'     # matches every branch containing a single '/'
-      - '**'      # matches every branch
+  issue_comment:
+    types: [created]
+    
+  #push:
+   # branches:
+    #  - '*'       # Matches any branch
+    #  - '*/*'     # matches every branch containing a single '/'
+    #  - '**'      # matches every branch
 
 jobs:
   slashCommandDispatch:
