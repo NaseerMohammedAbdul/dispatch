@@ -2,14 +2,9 @@ name : deploy command workflow
 on:
   repository_dispatch:
     types: [deploy-command]
-  workflow_dispatch:
-    inputs:
-      name:
-        description: 'Env Name'
-        default: 'dev'
-        required: true
+  
 env:
-  ENVIRONMENT    : ${{ github.event.client_payload.slash_command.args.named.enviornment || github.event.inputs.name  || 'notprod' }}
+  ENVIRONMENT    : dev
   REGION         : eastus
 jobs:
   example:
