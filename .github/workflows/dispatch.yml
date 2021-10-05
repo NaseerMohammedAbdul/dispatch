@@ -1,0 +1,20 @@
+name: Dispatch Workflow
+
+on:
+  push:
+    branches:
+      - '*'       # Matches any branch
+      - '*/*'     # matches every branch containing a single '/'
+      - '**'      # matches every branch
+  pull_request:
+    types: [ assigned, opened, synchronize, reopened ]
+
+jobs:
+  slashCommandDispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slash Command Dispatch
+        uses: peter-evans/slash-command-dispatch@v2
+        with:
+          commands: |
+            deploy1
