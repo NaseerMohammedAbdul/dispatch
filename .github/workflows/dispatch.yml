@@ -16,11 +16,11 @@ jobs:
     steps:
        - name: Print Event 
          env:
-            eventObj: ${{toJson(github.event)}}
+            eventObj: ${{toJson(github.event).action}}
          run: | 
-           eventObj1=${{env.eventObj}}
-           action=`echo $(jq -r '.action' <<< "$eventObj1")`
-           echo $action
+           #eventObj1=${{env.eventObj}}
+           #action=`echo $(jq -r '.action' <<< "$eventObj1")`
+           echo ${{ env.eventObj }}
            echo "${{ github.event.client_payload.github.issue.number }}"
            
        - name: Slash Command Dispatch
