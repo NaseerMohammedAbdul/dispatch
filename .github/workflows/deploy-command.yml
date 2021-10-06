@@ -5,14 +5,19 @@ on:
     
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Env Name' 
-        default: 'dev'       
+      version:
+        description: 'version' 
+        default: ''       
+        required: true        
+      evn:
+        description: 'Env' 
+        default: ''       
         required: true
   
 env:
-  ENVIRONMENT    : ${{ github.event.client_payload.slash_command.args.named.name || github.event.inputs.name  || 'notprod' }}
+  ENVIRONMENT    : ${{ github.event.client_payload.slash_command.args.named.env || github.event.inputs.env  || 'nonprod' }}
   REGION         : eastus
+  VERSION        : ${{ github.event.client_payload.slash_command.args.named.version || github.event.inputs.version  || '' }}
 jobs:
   example:
     runs-on: ubuntu-latest
@@ -44,3 +49,4 @@ jobs:
           echo "${{ github.event.client_payload.slash_command.args.named.enviornment }}"
           echo "${{ github.event.client_payload.slash_command.args.named.region }}"
           echo "${{ env.ENVIRONMENT }}"
+          echo "${{ env.VERSION }}"
