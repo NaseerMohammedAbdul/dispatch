@@ -18,7 +18,7 @@ jobs:
          env:
             eventObj: ${{toJson(github.event)}}
          run: | 
-           echo "${{ evn.eventObj.client_payload }}"
+           echo "${{ env.eventObj.client_payload }}"
            echo "${{ github.event.client_payload.github.issue.number }}"
            
        - name: Slash Command Dispatch
