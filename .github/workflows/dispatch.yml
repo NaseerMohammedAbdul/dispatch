@@ -16,7 +16,7 @@ jobs:
     steps:
        - name: Print Event 
          run: | 
-           echo "${{ github.event }}"
+           echo "${{toJson(github.event)}}"
            echo "${{ github.event.client_payload.github.issue.number }}"
            
        - name: Slash Command Dispatch
