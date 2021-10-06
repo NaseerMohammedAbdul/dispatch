@@ -15,8 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: Print Event 
+         env:
+            eventObj: ${{toJson(github.event)}}
          run: | 
-           echo "${{toJson(github.event.client_payload.github.issue.number)}}"
+           echo "${{ evn.eventObj.client_payload }}"
            echo "${{ github.event.client_payload.github.issue.number }}"
            
        - name: Slash Command Dispatch
