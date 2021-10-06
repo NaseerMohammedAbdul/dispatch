@@ -9,7 +9,7 @@ on:
         description: 'version' 
         default: ''       
         required: true        
-      evn:
+      env:
         description: 'Env' 
         default: ''       
         required: true
