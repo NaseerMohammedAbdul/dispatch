@@ -21,6 +21,6 @@ jobs:
           token: ${{ env.GEN_TOKEN }}
           issue-number: 1
           body: |
-            /deploy name=AMPS
+            /deploy env=preprod,version=99999999
             
           reactions: '+2'
