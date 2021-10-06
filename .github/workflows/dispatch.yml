@@ -18,7 +18,8 @@ jobs:
          env:
             eventObj: ${{toJson(github.event)}}
          run: | 
-           action=`echo $(jq -r '.action' <<< "$githubjson")`
+           eventObj1=${{evn.eventObj}}
+           action=`echo $(jq -r '.action' <<< "$eventObj1")`
            echo $action
            echo "${{ github.event.client_payload.github.issue.number }}"
            
