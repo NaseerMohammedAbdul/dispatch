@@ -14,14 +14,16 @@ jobs:
   slashCommandDispatch:
     runs-on: ubuntu-latest
     steps:
-       - name: Print Event 
+    
+       - name: get nested property
          env:
-            eventObj: ${{toJson(github.event)}}
-         run: | 
-           eventObj1=${{env.eventObj}}
-           #action=`echo $(jq -r '.action' <<< "$eventObj1")`
-           echo ${{fromJson($eventObj1).action}}
-           echo "${{ github.event.client_payload.github.issue.number }}"
+           eventObj: ${{toJson(github.event)}}
+         id: format_script
+         uses: notiz-dev/github-action-json-property@release
+         with: 
+            path: ${{env.eventObj}}
+            prop_path: 'client_payload.github.issue.number'
+       - run: echo ${{steps.format_script.outputs.prop}} 
            
        - name: Slash Command Dispatch
          uses: peter-evans/slash-command-dispatch@v2
