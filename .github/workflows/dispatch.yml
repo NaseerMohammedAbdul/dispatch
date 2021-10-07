@@ -22,12 +22,12 @@ jobs:
            cat file.json
            
        - name: get nested property
-         id: format_script
+         id: comment
          uses: notiz-dev/github-action-json-property@release
          with: 
             path: file.json
-            prop_path: 'issue.number'
-       - run: echo ${{steps.format_script.outputs.prop}} 
+            issue_path: 'issue.number'
+       - run: echo ${{steps.comment.outputs.issue}} 
            
        - name: Slash Command Dispatch
          uses: peter-evans/slash-command-dispatch@v2
