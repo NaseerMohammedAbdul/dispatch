@@ -19,6 +19,7 @@ jobs:
          run: |
            echo '${{toJson(github.event)}}' >> file.json
            ls -ltr
+           cat file.json
            
        - name: get nested property
          id: format_script
