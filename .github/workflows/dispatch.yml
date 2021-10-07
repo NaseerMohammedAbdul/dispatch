@@ -26,8 +26,8 @@ jobs:
          uses: notiz-dev/github-action-json-property@release
          with: 
             path: file.json
-            issue_path: 'issue.number'
-       - run: echo ${{steps.comment.outputs.issue}} 
+            prop_path: 'issue.number'
+       - run: echo ${{steps.comment.outputs.prop}} 
            
        - name: Slash Command Dispatch
          uses: peter-evans/slash-command-dispatch@v2
