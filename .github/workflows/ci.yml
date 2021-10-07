@@ -22,5 +22,4 @@ jobs:
           issue-number: 1
           body: |
             /deploy version=99999999 env=preprod
-            
           reactions: '+2'
