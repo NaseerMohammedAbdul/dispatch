@@ -17,7 +17,7 @@ jobs:
     
        - name: Json File output
          run: |
-           echo `${{toJson(github.event)}} >> file.json`
+           echo ${{toJson(github.event)}} >> file.json
            ls -ltr
            
        - name: get nested property
