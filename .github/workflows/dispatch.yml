@@ -15,13 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
+       - name: Json File output
+         run: |
+           echo `${{toJson(github.event)}} >> file.json`
+           ls -ltr
+           
        - name: get nested property
-         env:
-           eventObj: ${{toJson(github.event)}}
          id: format_script
          uses: notiz-dev/github-action-json-property@release
          with: 
-            path: ${{env.eventObj}}
+            path: file.json
             prop_path: 'client_payload.github.issue.number'
        - run: echo ${{steps.format_script.outputs.prop}} 
            
