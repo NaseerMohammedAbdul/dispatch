@@ -26,7 +26,7 @@ jobs:
          uses: notiz-dev/github-action-json-property@release
          with: 
             path: file.json
-            prop_path: 'client_payload.github.issue.number'
+            prop_path: 'issue.number'
        - run: echo ${{steps.format_script.outputs.prop}} 
            
        - name: Slash Command Dispatch
