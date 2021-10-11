@@ -1,5 +1,3 @@
-# dispatch
-
 # Workflow call with Issue-Comment 
 
 CI -> this workflow creates a Issue Comments with desired command 
