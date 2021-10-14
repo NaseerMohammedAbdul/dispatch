@@ -18,6 +18,8 @@ jobs:
           echo ${{github.event.pull_request.number}}
           echo ${{github.event.pull_request.merged}}
           echo ${{github.event.pull_request.state}}
+          echo ${{github.event.pull_request.head.ref}}
+          
       - name: Create comment
         if: ${{github.event.pull_request.merged && github.event.pull_request.head.ref == 'Release26' }}
         uses: peter-evans/create-or-update-comment@v1
