@@ -7,7 +7,7 @@ on:
       - '*/*'     # matches every branch containing a single '/'
       - '**'      # matches every branch
   pull_request:
-    types: [ assigned, opened, synchronize, reopened, merged ]
+    types: [ assigned, opened, synchronize, reopened, closed ]
     
 jobs:
   slashCommandDispatch:
@@ -16,8 +16,10 @@ jobs:
       - run: |
           echo '${{toJson(github.event.pull_request)}}'
           echo ${{github.event.pull_request.number}}
+          echo ${{github.event.pull_request.merged}}
+          echo ${{github.event.pull_request.state}}
       - name: Create comment
-        if: ${{github.event.pull_request.status == 'merged'}}
+        if: ${{github.event.pull_request.merged}}
         uses: peter-evans/create-or-update-comment@v1
         env:
             GEN_TOKEN: ${{ secrets.APP_KEY }}
