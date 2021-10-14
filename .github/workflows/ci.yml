@@ -7,19 +7,23 @@ on:
       - '*/*'     # matches every branch containing a single '/'
       - '**'      # matches every branch
   pull_request:
-    types: [ assigned, opened, synchronize, reopened ]
+    types: [ assigned, opened, synchronize, reopened, merged ]
     
 jobs:
   slashCommandDispatch:
     runs-on: ubuntu-latest
     steps:
+      - run: |
+          echo '${{toJson(github.event.pull_request)}}'
+          echo ${{github.event.pull_request.number}}
       - name: Create comment
+        if: ${{github.event.pull_request.merged}}
         uses: peter-evans/create-or-update-comment@v1
         env:
             GEN_TOKEN: ${{ secrets.APP_KEY }}
         with:
           token: ${{ env.GEN_TOKEN }}
-          issue-number: 1
+          issue-number: ${{github.event.pull_request.number}}
           body: |
             /deploy version=99999999 env=preprod
           reactions: '+2'
