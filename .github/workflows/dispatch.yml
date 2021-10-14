@@ -4,17 +4,20 @@ on:
   issue_comment:
     types: [created]
     
-  #push:
-   # branches:
-    #  - '*'       # Matches any branch
-    #  - '*/*'     # matches every branch containing a single '/'
-    #  - '**'      # matches every branch
+  pull_request:
+    types: [ closed ]
 
 jobs:
   autoDeployDispatch:
     runs-on: ubuntu-latest
     steps:
-    
+       - run: |
+          echo '${{toJson(github.event.pull_request)}}'
+          echo ${{github.event.pull_request.number}}
+          echo ${{github.event.pull_request.merged}}
+          echo ${{github.event.pull_request.state}}
+          echo ${{github.event.pull_request.head.ref}}    
+          
        - name: Json File output
          run: |
            echo '${{toJson(github.event)}}' >> file.json
