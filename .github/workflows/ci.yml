@@ -18,7 +18,7 @@ jobs:
           echo ${{github.event.pull_request.number}}
           echo ${{github.event.pull_request.merged}}
           echo ${{github.event.pull_request.state}}
-          echo ${{'refs/heads/'github.event.pull_request.head.ref}}          
+          echo 'refs/heads/'${{github.event.pull_request.head.ref}}          
           
       - name: Create comment
         if: ${{github.event.pull_request.merged && github.event.pull_request.head.ref == 'Release26' }}
