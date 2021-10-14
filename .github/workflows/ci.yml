@@ -13,7 +13,7 @@ jobs:
   slashCommandDispatch:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event.pull_request }}
+      - run: echo '${{toJson(github.event.pull_request)}}'
       - name: Create comment
         if: ${{github.event.pull_request.state == 'merged'}}
         uses: peter-evans/create-or-update-comment@v1
