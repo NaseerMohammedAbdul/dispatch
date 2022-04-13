@@ -10,11 +10,11 @@ on:
     types: [ assigned, opened, synchronize, reopened, closed ]
 jobs:
   loopcheck:
-    strategy:
-      matrix:
-        scssfiles: [fileone,file2]
     runs-on: [ubuntu-latest]
     steps:
       - name: test
         run: |
-          echo ${{ matrix.scssfiles }}.scss
+          strategy:
+            matrix:
+              files: [test1, test2]
+              echo ${{ matrix.files }}.scss
