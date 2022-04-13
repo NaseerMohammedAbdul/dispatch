@@ -8,9 +8,7 @@ on:
       - '**'      # matches every branch
   pull_request:
     types: [ assigned, opened, synchronize, reopened, closed ]
-    
- 
- jobs:
+jobs:
   loopcheck:
     strategy:
       matrix:
