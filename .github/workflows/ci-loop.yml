@@ -1,0 +1,22 @@
+name: Generic CI Workflow
+
+on:
+  push:
+    branches:
+      - '*'       # Matches any branch
+      - '*/*'     # matches every branch containing a single '/'
+      - '**'      # matches every branch
+  pull_request:
+    types: [ assigned, opened, synchronize, reopened, closed ]
+    
+ 
+ jobs:
+  loopcheck:
+    strategy:
+      matrix:
+        scssfiles: [fileone,file2]
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: test
+        run: |
+          echo ${{ matrix.scssfiles }}.scss
