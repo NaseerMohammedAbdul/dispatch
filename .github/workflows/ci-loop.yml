@@ -9,7 +9,7 @@ on:
   pull_request:
     types: [ assigned, opened, synchronize, reopened, closed ]
 jobs:
-  loopcheck:
+  deployments:
     strategy:
       matrix:
         scssfiles: [fileone,file2]
