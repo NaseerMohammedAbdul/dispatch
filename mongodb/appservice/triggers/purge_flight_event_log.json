@@ -1,0 +1,17 @@
+{
+    "id": "64c93cf3e04cc32dc7294f26",
+    "name": "purge_flight_event_log",
+    "type": "SCHEDULED",
+    "config": {
+        "schedule": "0 0 */1 * *",
+        "skip_catchup_events": false
+    },
+    "disabled": false,
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "purgeFlightEventLog"
+            }
+        }
+    }
+}

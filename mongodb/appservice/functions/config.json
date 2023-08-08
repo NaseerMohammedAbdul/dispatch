@@ -1,0 +1,6 @@
+[
+    {
+        "name": "purgeFlightEventLog",
+        "private": true
+    }
+]
